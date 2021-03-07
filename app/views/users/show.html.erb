@@ -1,0 +1,156 @@
+ <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container">
+                                    <%= image_tag @user.avatar, id: 'imgProfile', style: "width: 150px; height: 150px", class: "img-thumbnail" if @user.avatar.present? %>
+                                    <div class="middle">
+                                      <%= form_with(model: @user, local: true) do |f| %>
+                                          <%= f.file_field :avatar %>
+                                          <br>
+                                          <input type="submit" class="btn btn-secondary" id="btnChangePicture" value="Update" />
+                                      <% end %>
+
+                                        
+                                    </div>
+                                </div>
+                                <div class="userData ml-3">
+                                </div>
+                                <div class="ml-auto">
+                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="user-address-tab" data-toggle="tab" href="#userAddreess" role="tab" aria-controls="userAddreess" aria-selected="false">Address</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Full Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.name %>
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Email</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.email %>
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Role</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.role.try(:name) %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Phone</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.phone %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="userAddreess" role="tabpanel" aria-labelledby="user-address-tab">
+                                        <%  if current_user.admin? || current_user == @user %>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                              <%= link_to 'Edit', edit_address_path(@user.address), class: 'btn btn-primary' %>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <% end %>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Line</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.address.line %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Street</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.address.street %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Landmark</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.address.landmark %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">City</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.address.city %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">State</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.address.state %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Pin Code</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <%= @user.address.pin_code %>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
